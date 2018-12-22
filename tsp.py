@@ -2,9 +2,9 @@
 from sys import argv
 from RObjects import Graph, Node
 from RouteAlgorithms import NNRoute, LocalSearch
-from visual import *
+from RouteVisualizer import *
 
-def _generateCities():
+def generateNode():
     """ generate nodes from file argument"""
     def _getFileArg(n):
         return argv[n]
@@ -23,14 +23,11 @@ def _generateCities():
 
 
 def main():
-    graph = Graph(_generateCities())
-    #graph.Nodes = NNRoute.Solve(graph.Nodes)
-    #graph.Nodes = LocalSearch.Opt2Solve(graph.Nodes)
-
-    window = Window(root)
+    graph = Graph(generateNode())
+    window = Window()
     window.addNodes(graph.Nodes)
-    window.plot()
+    window.addAlgoOptions({'NerestNeighbor': NNRoute.Solve, '2-Opt': LocalSearch.Opt2Solve})
+    window.run()
 
-    mainloop()
 main()
 

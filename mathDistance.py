@@ -6,5 +6,4 @@ def SumDistance(vectors):
         sumDist = 0.0
         for i in range(len(vectors) - 1):
             sumDist  += EuclideanDistance(vectors[i], vectors[i+1])
-
         return sumDist

@@ -1,7 +1,8 @@
 from tkinter import *
 from RObjects import Node
 from RouteAlgorithms import *
-from mathDistance import SumDistance
+
+
 root = Tk()
 class Window():
     def __init__(self, root):
@@ -104,8 +105,7 @@ class Window():
             self.canvas.create_line(
                 self.Points[i].x, self.Points[i].y, self.Points[i+1].x, self.Points[i+1].y, arrow=LAST,
                 width=self.linewidth, tags='line')
-        # self.canvas.create_line(self.Points[-1].x, self.Points[-1].y, self.Points[0].x, self.Points[0].y,
-        #                         width=self.linewidth, tags='line')
+
     def key(self, event):
         if event.char == 'z':
             self.scaleX *= self.zoominrate
@@ -153,7 +153,6 @@ class Window():
         self.distance = round(SumDistance([node.loc for node in self.Nodes]), 6)
         self.distancedisplay.config(text="total: "+str(self.distance))
         self.redraw(restorezoom=True)
-
 
 
 class Point():

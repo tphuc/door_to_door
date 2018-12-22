@@ -1,10 +1,10 @@
-from tkinter import *
 
-root = Tk()
-variable = StringVar(root)
-variable.set("one")
-w = OptionMenu(root, variable, "one", "two", "three")
-w.pack()
+def f1():
+    print('1')
+def f2():
+    print('2')
 
-
-mainloop()
+choices = {'1': f1, '2':f2}
+a = input()
+func = choices.get(a, lambda: print("Invalid month"))
+func()
