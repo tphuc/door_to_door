@@ -227,7 +227,7 @@ class Window():
 
     def run(self):
         self.canvas.delete("all")
-        self.plot()
+        #self.plot()
         mainloop()
 
 

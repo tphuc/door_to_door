@@ -3,6 +3,7 @@ from sys import argv
 from RObjects import Graph, Node
 from RouteAlgorithms import NNRoute, LocalSearch
 from RouteVisualizer import *
+from evolutionary import GA
 
 def generateNode():
     """ generate nodes from file argument"""
@@ -26,8 +27,12 @@ def main():
     graph = Graph(generateNode())
     window = Window()
     window.addNodes(graph.Nodes)
-    window.addAlgoOptions({'NerestNeighbor': NNRoute.Solve, '2-Opt': LocalSearch.Opt2Solve})
+    #window.addAlgoOptions({'NerestNeighbor': NNRoute.Solve, '2-Opt': LocalSearch.Opt2Solve})
     window.run()
+    # pop = GA.initPopulation(graph.Nodes)
+    # GA.Evolving(pop, 1000)
+    for i in range(1000):
+        window.distancedisplay.config(text="total: "+str(i))
 
 main()
 
