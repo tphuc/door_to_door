@@ -2,7 +2,7 @@
 from sys import argv
 from RObjects import Graph, Node
 from RouteAlgorithms import *
-#from RouteVisualizer import *
+from RouteVisualizer import *
 
 def generateNode():
     """ generate nodes from file argument"""
@@ -24,14 +24,14 @@ def generateNode():
 
 def main():
     graph = Graph(generateNode())
-    graph.find_shortest_path(GA.Solve)
-    # pop = GA.initPopulation(graph.Nodes)
-    # window = Window()
-    # window.addNodes(graph.Nodes)
+    #graph.find_shortest_path(GA.Solve)
+    pop = GA.initPopulation(graph.Nodes)
+    window = Window()
+    window.addNodes(graph.Nodes)
     # window.addAlgoChoice('2opt', LocalSearch.Opt2Solve, graph.Nodes,  returnid = 0)
     # window.addAlgoChoice('NN', NNRoute.Solve, graph.Nodes, returnid = 0)
-    # window.addAlgoChoice('GA',GA._Evolving, pop, GA.bestGene, returnid = 1)
-    # window.run()
+    window.addAlgoChoice('GA',GA._Evolving, pop, GA.bestGene, returnid = 1)
+    window.run()
 if __name__ == '__main__':
     main()
 

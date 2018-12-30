@@ -182,6 +182,7 @@ class Window():
             [point.loc for point in self.Points]), 6)
         self.distancedisplay.config(text="total: "+str(self.distance))
         self.redraw(restorezoom=True)
+        #self.deploy_button.after(500, self.deployAlgorithm)
 
     def plot(self):
         self._tocenter()

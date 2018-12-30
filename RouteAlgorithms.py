@@ -1,7 +1,7 @@
 from mathDistance import EuclideanDistance, SumDistance
 from RObjects import *
 from random import *
-
+import pyglet
 class NNRoute:
 
     @staticmethod
@@ -61,7 +61,7 @@ class LocalSearch:
         return Route
 
 class GA():
-    popMax = 200
+    popMax = 500
     step = 100
     mutationRate = 0.01
     bestGene = None
@@ -69,10 +69,10 @@ class GA():
 
     @staticmethod
     def initPopulation(gene):
-        pop = [Graph(gene)]
+        pop = []
         #pop.append(Graph(gene))
         for _ in range(GA.popMax):
-            pop.append(Graph([gene[0]]+sample(gene[1:], len(gene)-1)))
+            pop.append(Graph([gene[0]] + sample(gene[1:], len(gene) - 1)))
         return pop
     
     @staticmethod
@@ -128,10 +128,11 @@ class GA():
                 newGene.append(c1)
             else:
                 newGene.append(c2)
+            i+= 1
         return newGene
         
     @staticmethod
-    def _Evolving(population, bestNodes=None):
+    def _Evolving(population, bestNodes):
         GA.bestGene = Graph(bestNodes)
         maxDist = None
         minDist = None
@@ -172,8 +173,7 @@ class GA():
 
     @staticmethod
     def Solve(nodes):
+        pop = GA.initPopulation(nodes)
         for _ in range(GA.step):
-            pop = GA.initPopulation(nodes)
             pop, GA.bestGene = GA._Evolving(pop, GA.bestGene)
         return GA.bestGene
-    
