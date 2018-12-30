@@ -21,3 +21,9 @@ class Graph:
         for node in self.Nodes:
             print(node.name, end='->')
         print('')
+    
+    def find_shortest_path(self, *algorithm):
+        for algo in algorithm:
+            self.Nodes = algo(self.Nodes)
+        print(self.totalDistance())
+    
